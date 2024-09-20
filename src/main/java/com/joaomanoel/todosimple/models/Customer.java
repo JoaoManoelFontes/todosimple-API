@@ -34,9 +34,9 @@ public class Customer {
     private UUID id;
 
     @Column()
-    @NotBlank(groups = {CreateCustomer.class}, message = "O username não deve ser vazio.")
-    @Min(value = 4, groups = {CreateCustomer.class}, message = "O username deve ter no mínimo 4 caractéres.")
-    @Max(value = 50, groups = {CreateCustomer.class}, message = "O username deve ter no máximo 50 caractéres.")
+    @NotBlank(groups = {CreateCustomer.class, UpdateCustomer.class}, message = "O username não deve ser vazio.")
+    @Min(value = 4, groups = {CreateCustomer.class, UpdateCustomer.class}, message = "O username deve ter no mínimo 4 caractéres.")
+    @Max(value = 50, groups = {CreateCustomer.class, UpdateCustomer.class}, message = "O username deve ter no máximo 50 caractéres.")
     private String username;
 
     @Column(unique = true)
