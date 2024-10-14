@@ -1,7 +1,7 @@
 package com.joaomanoel.todosimple.services;
 
 import com.joaomanoel.todosimple.exceptions.task.DeleteTaskException;
-import com.joaomanoel.todosimple.exceptions.task.RegisterTaskInvalidBodyException;
+import com.joaomanoel.todosimple.exceptions.task.TaskNotEmptyIdException;
 import com.joaomanoel.todosimple.exceptions.task.TaskNotFoundException;
 import com.joaomanoel.todosimple.models.Customer;
 import com.joaomanoel.todosimple.models.Task;
@@ -30,7 +30,7 @@ public class TaskService {
     public Long register(Task task){
         Customer customer = this.customerService.findById(task.getCustomer().getId());
         if (task.getId() != null){
-            throw new RegisterTaskInvalidBodyException("O campo id deve estar vazio ao passar uma nova task para ser registrada. "+ task);
+            throw new TaskNotEmptyIdException(task);
         }
         task.setCustomer(customer);
         return this.taskRepository.save(task).getId();

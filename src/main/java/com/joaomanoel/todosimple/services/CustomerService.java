@@ -2,7 +2,7 @@ package com.joaomanoel.todosimple.services;
 
 import com.joaomanoel.todosimple.exceptions.customer.CustomerNotFoundException;
 import com.joaomanoel.todosimple.exceptions.customer.DeleteCustomerException;
-import com.joaomanoel.todosimple.exceptions.customer.RegisterCustomerInvalidBodyException;
+import com.joaomanoel.todosimple.exceptions.customer.CustomerNotEmptyIdException;
 import com.joaomanoel.todosimple.models.Customer;
 import com.joaomanoel.todosimple.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -25,11 +25,11 @@ public class CustomerService {
     }
 
     @Transactional
-    public UUID register(Customer customer){
+    public Customer register(Customer customer){
         if (customer.getId() != null){
-            throw new RegisterCustomerInvalidBodyException("O campo id deve estar vazio ao passar um novo usuário para ser registrado. "+ customer);
+            throw new CustomerNotEmptyIdException(customer);
         }
-        return this.customerRepository.save(customer).getId();
+        return this.customerRepository.save(customer);
     }
 
     @Transactional
