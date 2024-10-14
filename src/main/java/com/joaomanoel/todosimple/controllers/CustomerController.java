@@ -41,7 +41,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @Validated(Customer.UpdateCustomer.class)
-    public ResponseEntity<ResponseRegisterCustomerDTO> update(@Valid @PathVariable UUID id, @RequestBody Customer customer) {
+    public ResponseEntity<ResponseRegisterCustomerDTO> update(@Valid @RequestBody Customer customer, @PathVariable UUID id) {
         customer.setId(id);
         return ResponseEntity.ok().body(new ResponseRegisterCustomerDTO(this.customerService.update(customer)));
     }
