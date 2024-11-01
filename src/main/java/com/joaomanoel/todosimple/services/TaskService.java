@@ -9,7 +9,9 @@ import com.joaomanoel.todosimple.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class TaskService {
@@ -24,6 +26,10 @@ public class TaskService {
     public Task findById(Long id){
         Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(() -> new TaskNotFoundException(id));
+    }
+
+    public List<Task> findAllByCustomerId(UUID customerId){
+        return this.taskRepository.findAllByCustomer_Id(customerId);
     }
 
     @Transactional

@@ -1,9 +1,8 @@
 package com.joaomanoel.todosimple.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,12 +29,12 @@ public class Task {
     private Customer customer;
 
     @Column
-    @Min(value = 1, message = "O título deve ter no mínimo 1 caractére")
-    @Max(value = 50, message = "O título deve ter no máximo 50 caractére")
+    @Size(min = 4, max = 50, message = "O título deve ter entre 4 e 50 caracteres.")
+    @NotNull
     private String title;
 
     @Column
-    @Max(value = 255, message = "A descrição deve ter no máximo 255 caractéres")
+    @Size(max = 255, message = "A descrição deve ter no máximo 255 caracteres.")
     @NotNull
     private String description;
 
@@ -44,5 +43,15 @@ public class Task {
         if (this == o) return true;
         if (!(o instanceof Task task)) return false;
         return Objects.equals(id, task.id) && Objects.equals(customer, task.customer) && Objects.equals(title, task.title) && Objects.equals(description, task.description);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", customerId=" + customer.getId() +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
