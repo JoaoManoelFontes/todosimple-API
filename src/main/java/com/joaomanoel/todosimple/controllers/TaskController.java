@@ -21,8 +21,9 @@ public class TaskController {
     private final TaskService taskService;
     private final CustomerService customerService;
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, CustomerService customerService) {
         this.taskService = taskService;
+        this.customerService = customerService;
     }
 
     @GetMapping("/{id}")
