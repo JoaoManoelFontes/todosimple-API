@@ -3,6 +3,7 @@ package com.joaomanoel.todosimple.controllers;
 import com.joaomanoel.todosimple.DTOS.task.ResponseRegisterTaskDTO;
 import com.joaomanoel.todosimple.DTOS.task.ResponseTaskDTO;
 import com.joaomanoel.todosimple.models.Task;
+import com.joaomanoel.todosimple.services.CustomerService;
 import com.joaomanoel.todosimple.services.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class TaskController {
 
     private final TaskService taskService;
+    private final CustomerService customerService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -30,6 +32,7 @@ public class TaskController {
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<ResponseTaskDTO>> findAllByCustomerId(@PathVariable UUID customerId) {
+        customerService.findById(customerId);
         List<Task>tasks = this.taskService.findAllByCustomerId(customerId);
         return ResponseEntity.ok().body(tasks.stream().map(ResponseTaskDTO::new).toList());
     }
