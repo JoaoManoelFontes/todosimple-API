@@ -25,4 +25,4 @@
 - abra o projeto na IDE de sua preferência
 - configure as variáveis de ambiente (DATABASE_USERNAME, DATABASE_PASSWORD) de acordo com o seu banco de dados
 - execute o projeto: `mvn spring-boot:run`
-- acesse as rotas a partir de: `http://localhost:8080/`
+- acesse as rotas a partir da url base: `http://localhost:8080/`
