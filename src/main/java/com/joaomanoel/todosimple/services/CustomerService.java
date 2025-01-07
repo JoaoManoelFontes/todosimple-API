@@ -7,16 +7,19 @@ import com.joaomanoel.todosimple.domain.exceptions.customer.DeleteCustomerExcept
 import com.joaomanoel.todosimple.domain.exceptions.customer.CustomerNotEmptyIdException;
 import com.joaomanoel.todosimple.domain.models.Customer;
 
+import com.joaomanoel.todosimple.domain.usecases.PasswordEncryptionUseCases;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
-public class CustomerServiceImpl implements CustomerUseCases {
+public class CustomerService implements CustomerUseCases {
     private final CustomerRepository customerRepository;
+    private final PasswordEncryptionUseCases passwordEncryptionUseCases;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, PasswordEncryptionUseCases passwordEncryptionUseCases) {
         this.customerRepository = customerRepository;
+        this.passwordEncryptionUseCases = passwordEncryptionUseCases;
     }
 
     public Customer findById(UUID id){
@@ -27,6 +30,7 @@ public class CustomerServiceImpl implements CustomerUseCases {
         if (customer.getId() != null){
             throw new CustomerNotEmptyIdException(customer);
         }
+        customer.setPassword(passwordEncryptionUseCases.encrypt(customer.getPassword()));
         return this.customerRepository.register(customer);
     }
 
