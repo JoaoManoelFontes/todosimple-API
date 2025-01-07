@@ -7,6 +7,7 @@
 - [x] CRUD de clientes
 - [x] CRUD de tarefas
 - [x] Relacionamento entre clientes e tarefas
+- [x] Arquitetura hexagonal e Orientada ao domínio (DDD)
 - [ ] Cripografia de senhas e Spring Security
 - [ ] Autenticação com JWT
 - [ ] Conteinerização com Docker
