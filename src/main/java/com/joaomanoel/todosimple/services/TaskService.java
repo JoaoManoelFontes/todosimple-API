@@ -1,11 +1,14 @@
 package com.joaomanoel.todosimple.services;
 
-import com.joaomanoel.todosimple.exceptions.task.DeleteTaskException;
-import com.joaomanoel.todosimple.exceptions.task.TaskNotEmptyIdException;
-import com.joaomanoel.todosimple.exceptions.task.TaskNotFoundException;
-import com.joaomanoel.todosimple.models.Customer;
-import com.joaomanoel.todosimple.models.Task;
-import com.joaomanoel.todosimple.repositories.TaskRepository;
+import com.joaomanoel.todosimple.domain.repositories.TaskRepository;
+import com.joaomanoel.todosimple.domain.usecases.CustomerUseCases;
+import com.joaomanoel.todosimple.domain.usecases.TaskUseCases;
+import com.joaomanoel.todosimple.domain.exceptions.task.DeleteTaskException;
+import com.joaomanoel.todosimple.domain.exceptions.task.TaskNotEmptyIdException;
+import com.joaomanoel.todosimple.domain.exceptions.task.TaskNotFoundException;
+import com.joaomanoel.todosimple.domain.models.Customer;
+import com.joaomanoel.todosimple.domain.models.Task;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +17,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class TaskService {
+public class TaskService implements TaskUseCases {
     private final TaskRepository taskRepository;
-    private final CustomerService customerService;
+    private final CustomerUseCases customerUseCases;
 
-    public TaskService(TaskRepository taskRepository, CustomerService customerService) {
+    public TaskService(TaskRepository taskRepository, CustomerUseCases customerUseCases) {
         this.taskRepository = taskRepository;
-        this.customerService = customerService;
+        this.customerUseCases = customerUseCases;
     }
 
     public Task findById(Long id){
@@ -34,7 +37,7 @@ public class TaskService {
 
     @Transactional
     public Long register(Task task){
-        Customer customer = this.customerService.findById(task.getCustomer().getId());
+        Customer customer = this.customerUseCases.findById(task.getCustomer().getId());
         if (task.getId() != null){
             throw new TaskNotEmptyIdException(task);
         }
