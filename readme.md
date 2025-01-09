@@ -27,3 +27,26 @@
 - configure as variáveis de ambiente (DATABASE_USERNAME, DATABASE_PASSWORD) de acordo com o seu banco de dados
 - execute o projeto: `mvn spring-boot:run`
 - acesse as rotas a partir da url base: `http://localhost:8080/`
+
+### Autenticação na API
+
+- crie um usuário com uma requisição POST para o entpoint /customer
+
+    payload: 
+    ``` json
+         "username":"username",
+	        "email":"test@mail.com",
+	        "password":"strongPassword"  
+    ```
+- mande uma requisição POST para o endpoint /authenticate com suas credenciais.
+ 
+    payload: 
+
+    ``` json
+         "username":"username",
+	        "password":"strongPassword"  
+    ```
+  
+- O retorno dessa chamada retornará um token JWT que será utilizado nos headers das requisições
+- Para as próximas requisições adicione esse token no header de Authorization, com "Bearer" seguido pelo token:
+`Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...`
