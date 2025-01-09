@@ -1,5 +1,6 @@
 package com.joaomanoel.todosimple.http.handler.exceptions;
 
+import com.joaomanoel.todosimple.domain.exceptions.auth.InvalidCredentialsException;
 import com.joaomanoel.todosimple.domain.exceptions.customer.CustomerNotEmptyIdException;
 import com.joaomanoel.todosimple.domain.exceptions.customer.CustomerNotFoundException;
 import com.joaomanoel.todosimple.domain.exceptions.customer.DeleteCustomerException;
@@ -22,6 +23,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ResponseBuilderDTO<String>>handleCustomerNotFound(CustomerNotFoundException ex) {
         String error = "Customer Not Found";
         return ResponseBuilder.build(error,HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ResponseBuilderDTO<String>>handleInvalidCredentials(InvalidCredentialsException ex) {
+        String error = "Invalid Credentials";
+        return ResponseBuilder.build(error,HttpStatus.UNAUTHORIZED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          , ex.getMessage());
     }
 
     @ExceptionHandler(CustomerNotEmptyIdException.class)

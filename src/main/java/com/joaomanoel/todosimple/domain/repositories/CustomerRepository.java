@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface CustomerRepository {
     Optional<Customer> findById(UUID id);
 
+    Optional<Customer> findByUsername(String username);
 
     Customer register(Customer customer);
 

@@ -6,4 +6,8 @@ public class CustomerNotFoundException extends RuntimeException{
     public CustomerNotFoundException(UUID id) {
         super("Não foi encontrado nenhum usuário com o id: "+id);
     }
+
+    public CustomerNotFoundException(String username) {
+        super("Não foi encontrado nenhum usuário com o username: "+username);
+    }
 }

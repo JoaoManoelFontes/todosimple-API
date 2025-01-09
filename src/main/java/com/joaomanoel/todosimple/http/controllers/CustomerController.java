@@ -35,7 +35,7 @@ public class CustomerController {
         return ResponseBuilder.build("Customer found successfully", HttpStatus.OK, new ResponseCustomerDTO(customer));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<ResponseBuilderDTO<ResponseRegisterCustomerDTO>> register(@Valid @RequestBody RequestRegisterCustomerDTO body) {
         Customer customer = this.customerMapper.RegisterDTOToDomain(body);
         ResponseRegisterCustomerDTO registerCustomerDTO = new ResponseRegisterCustomerDTO(this.customerUseCases.register(customer));

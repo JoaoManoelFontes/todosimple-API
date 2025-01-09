@@ -48,7 +48,7 @@ public class TaskController {
         return ResponseBuilder.build("Customer and tasks found successfully", HttpStatus.OK, taskDTO);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @Validated
     public ResponseEntity<ResponseBuilderDTO<ResponseRegisterTaskDTO>> register(@Valid @RequestBody RequestRegisterTaskDTO body) {
         Task task = this.taskMappers.DTOToDomain(body);

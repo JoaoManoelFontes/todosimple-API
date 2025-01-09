@@ -28,6 +28,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
+    public Optional<Customer> findByUsername(String username) {
+        Optional<JPACustomer> jpaCustomer = this.jpaCustomerRepository.findByUsername(username);
+        return jpaCustomer.map(this.customerMapper::EntityToDomain);
+    }
+
+    @Override
     @Transactional
     public Customer register(Customer customer) {
         JPACustomer jpaCustomer = this.jpaCustomerRepository.save(this.customerMapper.DomainToEntity(customer));
