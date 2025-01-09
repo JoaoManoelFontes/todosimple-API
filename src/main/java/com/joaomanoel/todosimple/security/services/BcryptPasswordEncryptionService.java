@@ -1,4 +1,4 @@
-package com.joaomanoel.todosimple.services;
+package com.joaomanoel.todosimple.security.services;
 
 import com.joaomanoel.todosimple.domain.usecases.PasswordEncryptionUseCases;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

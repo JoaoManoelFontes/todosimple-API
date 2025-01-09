@@ -8,8 +8,8 @@
 - [x] CRUD de tarefas
 - [x] Relacionamento entre clientes e tarefas
 - [x] Arquitetura hexagonal e Orientada ao domínio (DDD)
-- [ ] Cripografia de senhas e Spring Security
-- [ ] Autenticação com JWT
+- [x] Cripografia de senhas e Spring Security
+- [x] Autenticação com JWT
 - [ ] Conteinerização com Docker
 - [ ] Testes unitários
 
