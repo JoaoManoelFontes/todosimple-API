@@ -34,17 +34,17 @@
 
     payload: 
     ``` json
-         "username":"username",
-	        "email":"test@mail.com",
-	        "password":"strongPassword"  
+    	"username":"username",
+	"email":"test@mail.com",
+	"password":"strongPassword"  
     ```
 - mande uma requisição POST para o endpoint /authenticate com suas credenciais.
  
     payload: 
 
     ``` json
-         "username":"username",
-	        "password":"strongPassword"  
+    	"username":"username",
+	"password":"strongPassword"  
     ```
   
 - O retorno dessa chamada retornará um token JWT que será utilizado nos headers das requisições
